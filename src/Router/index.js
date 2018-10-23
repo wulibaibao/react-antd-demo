@@ -1,39 +1,38 @@
 import React from 'react';
 import { inject , observer} from 'mobx-react';
 import { Route , Redirect , Switch , withRouter} from 'react-router-dom'
+import loadable from 'react-loadable'
 
-import ContainerComponent from '@/Components/Container'
+function asyncImport( loader ){
+    function Loading(props) {
+        if (props.error) 
+            return <div>Error!</div>;
+        else if (props.pastDelay) 
+            return <div>Loading...</div>;
+        else 
+            return null;
+    }
 
-import User from '@/Pages/User'
-// import UserFirst from '@/Pages/User/FirstComponent'
-import Home from '@/Pages/Home'
-// import HomeFirst from '@/Pages/Home/FirstComponent'
-import Login from '@/Pages/Login'
+    return loadable({
+        loader,
+        loading: Loading,
+    })
+}
+
+const ContainerComponent = asyncImport( () => import( /* webpackChunkName: 'container' */ '@/Components/Container') )
 
 const Config = [
     {
         path : '/index',
-        component : Home,//
-        // children : [
-        //     {
-        //         path : '/first',
-        //         component : HomeFirst,
-        //     }
-        // ]
+        component : asyncImport( () => import( /* webpackChunkName: 'index' */ '@/Pages/Home') ),
     },
     {
         path : '/user',
-        component : User,//
-        // children : [
-        //     {
-        //         path : '/first',
-        //         component : UserFirst,
-        //     }
-        // ]
+        component : asyncImport( () => import( /* webpackChunkName: 'user' */ '@/Pages/User') ),
     },
     {
         path : '/login',
-        component : Login,//
+        component : asyncImport( () => import( /* webpackChunkName: 'login' */ '@/Pages/Login') ),
     },
 ]
 
@@ -57,6 +56,7 @@ class RouterComponents extends React.Component{
                                 component={ 
                                     props => this.requireAuth( item.component , props) 
                                 } 
+                                exact
                             >
                                 {/* {
                                     item.length > 0 ?
