@@ -65,12 +65,13 @@ build
 ```
 
 ##### webpack.config.prod
+
 + externals 
     externals 配置选项提供了「从输出的 bundle 中排除依赖」的方法。
 
 ```
  + externals: {
- +     'react': 'React',
+ +    'react': 'React',
  +    'react-dom': 'ReactDOM',
  +    'mobx' : 'mobx',
  +    'react-router-dom':'ReactRouterDOM',
@@ -88,6 +89,7 @@ build
 ```
 
 ##### package.json -> proxy
+
     如果你有单独的后端开发服务器 API，并且希望在同域名下发送 API 请求 ，那么代理某些 URL 会很有用
 
 ```
@@ -95,11 +97,12 @@ build
 ```
 
 ##### public -> index.html
+
     HtmlWebpackPlugin 你可以让插件为你生成一个HTML文件，使用lodash模板提供你自己的模板，或使用你自己的loader。
 
 ```
  + <%if(process.env.NODE_ENV === 'production') {%>
- +     <script src="%PUBLIC_URL%/lib/react.production.min.js"></script>
+ +    <script src="%PUBLIC_URL%/lib/react.production.min.js"></script>
  +    <script src="%PUBLIC_URL%/lib/react-dom.production.min.js"></script>
  +    <script src="%PUBLIC_URL%/lib/react-router-dom.min.js"></script>
  +    <script src="%PUBLIC_URL%/lib/mobx.umd.min.js"></script>
@@ -129,9 +132,8 @@ build
     app.listen(port)
     console.info(`Listen on Port ${port}`)
 ```
-## over!
 ## 希望喜欢
-----
+## over!
 
 #### 喜欢请关注个人博客！
 
