@@ -1,18 +1,20 @@
-####基于create-react-app构建的前端框架
+#### 基于create-react-app构建的前端框架
 
 开箱即用，容易理解，更适合小白使用开发学习
 
 已支持：
-- mobx ———————————————— mobx进行状态管理
+- mobx ———— mobx进行状态管理
 - React-router-dom ————  React路由体系
-- Antd ———————————————— 使用antd学习开发后台管理系统
-- React-loadable —————— import()动态加载的支持
-- webpack打包优化 —————— build包更小
-- fetch ——————————————— 数据请求
-- Scss ———————————————— css 预处理
+- Antd ———— 使用antd学习开发后台管理系统
+- React-loadable ———— import()动态加载的支持
+- webpack打包优化 ———— build包更小
+- fetch ———— 数据请求
+- Scss ———— css 预处理
 - 登录验证
 - 支持装载ES7（装饰器）
-- Express ————————————— 服务器 
+- Express 
+- Webpack 4.0
+- create-react-app 2.0
 
 即将支持：
 - IE兼容
@@ -26,14 +28,14 @@
 install
 `yarn install` or `npm install`
 
-######建议使用yarn
+###### 建议使用yarn
 `npm install yarn -g`
 
 start
 `yarn start`
 
 默认端口：3000
-######暂不支持命令更改端口
+###### 暂不支持命令更改端口
 
 webpack proxy 
 转发可以直接配置package.json中的proxy
@@ -44,7 +46,7 @@ build
 
 `yarn build`
 
-####具体修改点：
+#### 具体修改点：
 
 - webpack.config.dev.js && webpack.config.prod.js
 + 新增方法
