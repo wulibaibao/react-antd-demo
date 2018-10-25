@@ -26,19 +26,22 @@
 #### 快速开始
 
 install    
+
 `yarn install` or `npm install`
 
 ###### 建议使用yarn
 `npm install yarn -g`
 
 start    
+
 `yarn start`
 
-默认端口：3000
+    默认端口：3000
 ###### 暂不支持命令更改端口
 
 webpack proxy     
-转发可以直接配置package.json中的proxy
+
+    转发可以直接配置package.json中的proxy
 
 `yarn start --PORT 3000`
 
@@ -48,7 +51,7 @@ build
 
 #### 具体修改点：
 
-- webpack.config.dev.js && webpack.config.prod.js
+##### webpack.config.dev.js && webpack.config.prod.js
 + 新增方法
 ```
  + function resolve (dir) {
@@ -61,7 +64,7 @@ build
 
 ```
 
-- webpack.config.prod
+##### webpack.config.prod
 + externals 
     externals 配置选项提供了「从输出的 bundle 中排除依赖」的方法。
 
@@ -84,14 +87,14 @@ build
  + devtool: false 
 ```
 
-- package.json -> proxy
+##### package.json -> proxy
     如果你有单独的后端开发服务器 API，并且希望在同域名下发送 API 请求 ，那么代理某些 URL 会很有用
 
 ```
  + "proxy":{}
 ```
 
-- public -> index.html
+##### public -> index.html
     HtmlWebpackPlugin 你可以让插件为你生成一个HTML文件，使用lodash模板提供你自己的模板，或使用你自己的loader。
 
 ```
@@ -106,7 +109,7 @@ build
  + <%}%>
 ```
 
-- app.js
+##### app.js
 
 ```
     const path = require('path')
