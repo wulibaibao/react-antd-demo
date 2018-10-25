@@ -25,19 +25,19 @@
 
 #### 快速开始
 
-install
+install    
 `yarn install` or `npm install`
 
 ###### 建议使用yarn
 `npm install yarn -g`
 
-start
+start    
 `yarn start`
 
 默认端口：3000
 ###### 暂不支持命令更改端口
 
-webpack proxy 
+webpack proxy     
 转发可以直接配置package.json中的proxy
 
 `yarn start --PORT 3000`
