@@ -1,23 +1,7 @@
 import React from 'react';
 import { inject , observer} from 'mobx-react';
 import { Route , Redirect , Switch , withRouter} from 'react-router-dom'
-import loadable from 'react-loadable'
-
-function asyncImport( loader ){
-    function Loading(props) {
-        if (props.error) 
-            return <div>Error!</div>;
-        else if (props.pastDelay) 
-            return <div>Loading...</div>;
-        else 
-            return null;
-    }
-
-    return loadable({
-        loader,
-        loading: Loading,
-    })
-}
+import { asyncImport } from '@/Plugins'
 
 const ContainerComponent = asyncImport( () => import( /* webpackChunkName: 'container' */ '@/Components/Container') )
 

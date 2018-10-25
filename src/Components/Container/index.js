@@ -24,12 +24,16 @@ const Config = [
 @inject('store')
 @observer
 class ContainerComponents extends React.Component{
+    state={
+        system : process.env.NODE_ENV === 'development' ? '开发' : '生产',
+    }
 
     render(){
         let Component = this.props.component;
-        
         return (
             <Content>
+                <h3>{ `所在环境：${this.state.system}` }</h3>
+                <a href="https://www.wulibaibao.com/" __target="blank"><h3>https://www.wulibaibao.com/</h3></a>
                 <div>
                     {
                         Config.map( item => 
