@@ -8,19 +8,19 @@
 - Antd ———— 使用antd学习开发后台管理系统
 - React-loadable ———— import()动态加载的支持
 - webpack打包优化 ———— build包更小
-- fetch ———— 数据请求
+- fetch ———— 数据请求 可另行安装axios
 - Scss ———— css 预处理
 - 登录验证
 - 支持装载ES7（装饰器）
 - Express 
 - Webpack 4.0
 - create-react-app 2.0
+- 文件 gzip ———— compression
 
 即将支持：
 - IE兼容
 - 接口
 - nginx
-- gzip
 - typescript
 
 #### 快速开始
