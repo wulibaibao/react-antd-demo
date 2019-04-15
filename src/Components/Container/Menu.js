@@ -16,7 +16,10 @@ class MenuComponent extends React.Component {
         let collapsed = this.props.store.collapsed
         let store = this.props.store;
 
+
         const defaultOpenKeys = router.map( item => item.path )
+        console.log( defaultOpenKeys )
+
         //[`/${ this.props.location.pathname.split('/')[1] }`]
 
         return (
@@ -41,8 +44,9 @@ class MenuComponent extends React.Component {
                                     }
                                 >
                                     {
-                                        npx.role == '' || store[npx.role] ? 
+                                        npx.role === '' || store[npx.role] ? 
                                         <MenuItem
+                                            key={ npx.path }
                                             onClick = {
                                                 () => this.props.history.push( npx.path )
                                             }
