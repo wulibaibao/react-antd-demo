@@ -1,60 +1,55 @@
-import React from 'react';
+import React from 'react'
 import { inject , observer } from 'mobx-react';
-import { withRouter , Link } from 'react-router-dom'
-import { Layout } from 'antd'
+import { withRouter } from 'react-router-dom'
+import { Layout , Icon } from 'antd'
+import MenuComponent from '@/Components/Container/Menu'
+import '@/Components/Container/index.scss'
 
-const { Content } = Layout;
-
-const Config = [
-    {
-        'meta' : '首页',
-        'path' : '/index',
-    },
-    {
-        'meta' : '用户主页',
-        'path' : '/user',
-    },
-    {
-        'meta' : '登录页',
-        'path' : '/login',
-    }
-]
+const { Header, Sider, Content } = Layout;
 
 @withRouter
 @inject('store')
 @observer
-class ContainerComponents extends React.Component{
-    state={
-        system : process.env.NODE_ENV === 'development' ? '开发' : '生产',
-    }
+class ContainerComponent extends React.Component {
+    state = {
+        collapsed: false,
+    };
+    
+    toggle = () => this.setState({ collapsed: !this.state.collapsed, });
 
-    render(){
-        let Component = this.props.component;
+    render() {
+        let ContentComponent = this.props.component;
+
         return (
-            <Content>
-                <h3>{ `所在环境：${this.state.system}` }</h3>
-                <a href="https://www.wulibaibao.com/" __target="blank"><h3>https://www.wulibaibao.com/</h3></a>
-                <div>
-                    {
-                        Config.map( item => 
-                            (
-                                <Link 
-                                    style={{ 
-                                        marginRight:'1em' 
-                                    }} 
-                                    to={ item.path } 
-                                    key={ item.path }
-                                >
-                                    { item.meta }
-                                </Link>
-                            )
-                        )
-                    }
-                </div>
-                <Component {...this.props} />
-            </Content>
-        )
+            <Layout style={{ height:"100%", }}>
+                <Sider
+                    trigger={null}
+                    collapsible
+                    collapsed={ this.state.collapsed }
+                >
+                    <div className="logo" style={{ height: 32 , background: "rgba(255,255,255,.2)" , margin: 16  }}/>
+                    <MenuComponent />
+                </Sider>
+                <Layout>
+                    <Header style={{ background: '#fff', padding: 0 }}>
+                    <Icon
+                        className="trigger"
+                        type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                        style={{ fontSize : 20 , padding: "0 24px" , cursor : 'pointer'}}
+                        onClick={this.toggle}
+                    />
+                    </Header>
+                    <Content 
+                        style={{
+                            margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280, overflowY: "scroll"
+                        }}
+                    >
+                        <ContentComponent  { ...this.props }/>
+                    </Content>
+                </Layout>
+            </Layout>
+        );
     }
 }
 
-export default ContainerComponents;
+export default ContainerComponent ;

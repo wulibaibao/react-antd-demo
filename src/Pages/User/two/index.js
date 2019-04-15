@@ -8,15 +8,15 @@ const { Content } = Layout
 @withRouter
 @inject('store')
 @observer
-class UserFirstComponent extends React.Component{
+class UserComponentLast extends React.Component{
 
     render(){
         return (
             <Content>
-                UserFirstComponent
+                { this.props.match.url } User Component Last
             </Content>
         )
     }
 }
 
-export default UserFirstComponent;
+export default UserComponentLast;

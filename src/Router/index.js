@@ -1,66 +1,41 @@
 import React from 'react';
-import { inject , observer} from 'mobx-react';
-import { Route , Redirect , Switch , withRouter} from 'react-router-dom'
-import { asyncImport } from '@/Plugins'
+import { Route , Switch , withRouter } from 'react-router-dom'
+import { asyncImport as sync } from '@/Plugins'
 
-const ContainerComponent = asyncImport( () => import( /* webpackChunkName: 'container' */ '@/Components/Container') )
+import routes from '@/Router/RouteConfig'
+import { RouteComponent } from '@/Components/RouteComponent'
 
-const Config = [
-    {
-        path : '/index',
-        component : asyncImport( () => import( /* webpackChunkName: 'index' */ '@/Pages/Home') ),
-    },
-    {
-        path : '/user',
-        component : asyncImport( () => import( /* webpackChunkName: 'user' */ '@/Pages/User') ),
-    },
-    {
-        path : '/login',
-        component : asyncImport( () => import( /* webpackChunkName: 'login' */ '@/Pages/Login') ),
-    },
-]
+let Login = sync(() => import( /* webpackChunkName: 'login' */ '@/Pages/Login'))
 
 @withRouter
-@inject('store')
-@observer
 class RouterComponents extends React.Component{
-    requireAuth( component , props ){
-        return <ContainerComponent component={ component } { ...props } />;
-    }
-
-    render(){
+    
+    render () {
         return (
             <Switch>
                 {
-                    Config.map( 
-                        item => (
-                            <Route 
-                                path={ item.path } 
-                                key={ item.path } 
-                                component={ 
-                                    props => this.requireAuth( item.component , props) 
-                                } 
-                                exact
-                            >
-                                {/* {
-                                    item.length > 0 ?
-                                    item.map( 
-                                        ctx => (
-                                            <Route
-                                                path={ ctx.path }
-                                                key={ ctx.path }
-                                                component={ ctx.component }
-                                            >
-                                            </Route>
-                                        )
-                                    )
-                                    : ''
-                                } */}
-                            </Route>
-                        )
+                    routes.map(
+                        router => {
+                            return (
+                                <Route
+                                    path={ router.path }
+                                    key={ router.path }
+                                    component={
+                                        props => {
+                                            return (
+                                                <RouteComponent 
+                                                    router={ router } 
+                                                    { ...props } 
+                                                />
+                                            )
+                                        }
+                                    }
+                                />
+                            )
+                        }
                     )
                 }
-                <Route render={ () => <Redirect to='/login' /> } />
+                <Route render={ () => <Login /> }  />
             </Switch>
         )
     }

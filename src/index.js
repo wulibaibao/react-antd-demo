@@ -4,14 +4,17 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import { LocaleProvider } from 'antd';
 import stores from '@/Store'
-import App from '@/Router'
+import Router from '@/Router'
 
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import moment from 'moment';
 import * as serviceWorker from '@/serviceWorker';
 
+import '@/Mock/dynamic_table';
+
 import 'moment/locale/zh-cn';
 import '@/index.css';
+import 'antd/dist/antd.min.css';
 
 moment.locale('zh-cn');
 
@@ -19,7 +22,7 @@ ReactDOM.render(
     <BrowserRouter>
         <Provider store={ stores }>
             <LocaleProvider locale={zhCN}>
-                <App />
+                <Router />
             </LocaleProvider>
         </Provider>
     </BrowserRouter>

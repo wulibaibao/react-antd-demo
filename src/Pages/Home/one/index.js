@@ -3,19 +3,20 @@ import { inject , observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom'
 import { Layout } from 'antd'
 
+const { Content } = Layout
+
 @withRouter
 @inject('store')
 @observer
-class UserComponent extends React.Component{
-    
+class HomeComponentFirst extends React.Component{
+
     render(){
-        console.log( 'user' )
         return (
-            <Layout>
-                /user
-            </Layout>
+            <Content>
+                { this.props.match.url  } Home Component First
+            </Content>
         )
     }
 }
 
-export default UserComponent;
+export default HomeComponentFirst;
